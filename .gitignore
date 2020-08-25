@@ -1,6 +1,9 @@
 # bundle
 bundle.js
 
+# env
+*.env
+
 # Logs
 logs
 *.log
