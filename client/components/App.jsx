@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "../styles/style.css"
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,17 @@ class App extends React.Component {
 
   handleSubmit(event) {
     alert('A message was submitted: ' + this.state.message);
+
+    axios.post('/post', {
+      message: this.state.message
+    })
+    .then(function (response) {
+      console.log(response);
+      this.setState({message: ''});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     event.preventDefault();
   }
 
@@ -23,9 +35,21 @@ class App extends React.Component {
     return(
       <>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Message:
-            <input type="text" name="message" onChange={this.handleChange} />
+          <label className="form-input">
+            Title:
+            <input type="text" name="title" onChange={this.handleChange} />
+          </label>
+          <label className="form-input">
+            Text:
+            <input type="text" name="text" onChange={this.handleChange} />
+          </label>
+          <label className="form-input">
+            Link:
+            <input type="text" name="link" onChange={this.handleChange} />
+          </label>
+          <label className="form-input">
+            Thumbnail URL:
+            <input type="text" name="thumb" onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>
